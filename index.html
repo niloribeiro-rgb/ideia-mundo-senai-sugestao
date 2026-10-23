@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolução dos Modelos de Produção e Trabalho</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        taylor: { light: '#3b82f6', DEFAULT: '#1d4ed8', dark: '#1e40af' },
+                        ford: { light: '#ef4444', DEFAULT: '#dc2626', dark: '#991b1b' },
+                        toyota: { light: '#10b981', DEFAULT: '#059669', dark: '#065f46' },
+                        uber: { light: '#f59e0b', DEFAULT: '#d97706', dark: '#b45309' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-effect {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+        }
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.9; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 glass-effect border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-indigo-600 text-white rounded-lg shadow-md">
+                    <i class="fa-solid fa-industry text-lg"></i>
+                </div>
+                <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">
+                    História do Trabalho
+                </span>
+            </div>
+
+            <!-- Navegação Desktop -->
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#modelos" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Modelos</a>
+                <a href="#comparativo" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Comparativo</a>
+                <a href="#linha-tempo" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Evolução</a>
+                <a href="#quiz" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Questionário</a>
+            </nav>
+
+            <!-- Botão de Tema (Modo Escuro/Claro) -->
+            <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:ring-2 hover:ring-indigo-500 focus:outline-none transition-all" title="Alternar Modo Claro/Escuro">
+                <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+                <i class="fa-solid fa-sun hidden dark:block text-lg text-amber-400"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow">
+        <!-- Secção Hero -->
+        <section class="relative py-16 lg:py-24 overflow-hidden border-b border-slate-200 dark:border-slate-800">
+            <div class="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none">
+                <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-amber-500 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <span class="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 inline-block mb-4">
+                    Sistemas de Produção & Sociedade
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mb-6">
+                    A Evolução dos Modelos de <br class="hidden sm:block">
+                    <span class="bg-gradient-to-r from-blue-600 via-red-500 via-emerald-500 to-amber-500 bg-clip-text text-transparent">
+                        Produção e Trabalho
+                    </span>
+                </h1>
+                <p class="max-w-3xl mx-auto text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                    Do cronómetro nas fábricas do século XX ao controlo por algoritmos e plataformas na era digital. Descubra como as transformações industriais e tecnológicas redefiniram a relação entre humanos, tempo e trabalho.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#modelos" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-lg shadow-indigo-500/25 transition-all">
+                        Explorar os 4 Modelos
+                    </a>
+                    <a href="#quiz" class="px-6 py-3 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold transition-all">
+                        Testar Conhecimentos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secção dos Cards dos Modelos -->
+        <section id="modelos" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Os 4 Grandes Paradigmas</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">Conheça as ilustrações visuais e características de cada modelo organizacional</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- 1. Taylorismo -->
+                <div class="bg-white dark:bg-slate-800/80 border-t-4 border-taylor rounded-2xl p-6 shadow-md card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300">Séc. XX (Início)</span>
+                            <div class="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-950 flex items-center justify-center text-taylor">
+                                <i class="fa-solid fa-stopwatch text-xl"></i>
+                            </div>
+                        </div>
+
+                        <!-- Ilustração SVG - Taylorismo -->
+                        <div class="w-full h-40 bg-blue-50/60 dark:bg-slate-900/60 rounded-xl mb-5 flex items-center justify-center p-3 border border-blue-100 dark:border-blue-900/30 overflow-hidden">
+                            <svg viewBox="0 0 200 120" class="w-full h-full max-h-36">
+                                <!-- Prancheta / Análise Científica -->
+                                <rect x="25" y="20" width="60" height="80" rx="4" fill="#3b82f6" fill-opacity="0.15" stroke="#1d4ed8" stroke-width="2"/>
+                                <rect x="42" y="15" width="26" height="8" rx="2" fill="#1d4ed8"/>
+                                <line x1="35" y1="35" x2="70" y2="35" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="35" y1="48" x2="75" y2="48" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="35" y1="61" x2="65" y2="61" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="35" y1="74" x2="70" y2="74" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="38" cy="87" r="3" fill="#1d4ed8"/>
+                                <circle cx="48" cy="87" r="3" fill="#1d4ed8"/>
+                                <circle cx="58" cy="87" r="3" fill="#1d4ed8"/>
+
+                                <!-- Cronómetro Analógico -->
+                                <circle cx="140" cy="60" r="32" fill="#ffffff" stroke="#1d4ed8" stroke-width="3"/>
+                                <circle cx="140" cy="60" r="28" fill="none" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="2 3"/>
+                                <rect x="136" y="20" width="8" height="8" rx="1" fill="#1d4ed8"/>
+                                <line x1="140" y1="60" x2="140" y2="40" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="140" y1="60" x2="152" y2="60" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="140" cy="60" r="3" fill="#1d4ed8"/>
+
+                                <!-- Engrenagem Racionalizadora -->
+                                <path d="M 102 30 L 106 30 L 107 34 L 111 36 L 115 33 L 118 36 L 116 40 L 118 44 L 122 45 L 122 49 L 118 50 L 116 54 L 118 58 L 115 61 L 111 58 L 107 60 L 106 64 L 102 64 L 101 60 L 97 58 L 93 61 L 90 58 L 92 54 L 90 50 L 86 49 L 86 45 L 90 44 L 92 40 L 90 36 L 93 33 L 97 36 L 101 34 Z" fill="#93c5fd" fill-opacity="0.5" stroke="#1d4ed8" stroke-width="1"/>
+                            </svg>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">1. Taylorismo</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold tracking-wider mb-4">Administração Científica</p>
+                        
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-6">
+                            Desenvolvido por Frederick Taylor. Focado na racionalização do trabalho através do estudo rigoroso do tempo e dos movimentos dos operários.
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-taylor mt-1 mr-2 text-xs"></i>
+                                <span><strong>Estudo de tempos e movimentos:</strong> Eliminação de gestos desnecessários no posto de trabalho.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-taylor mt-1 mr-2 text-xs"></i>
+                                <span><strong>Divisão extrema do trabalho:</strong> Tarefas ultra-especializadas e repetitivas.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-taylor mt-1 mr-2 text-xs"></i>
+                                <span><strong>Separação física:</strong> Quem planeia (gerência) vs. Quem executa (operário).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-taylor mt-1 mr-2 text-xs"></i>
+                                <span><strong>Foco na eficiência:</strong> Máxima produtividade individual e prémios de produção.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-700">
+                        <span class="text-xs font-medium text-slate-400">Palavra-chave: <strong class="text-slate-700 dark:text-slate-200">Racionalização</strong></span>
+                    </div>
+                </div>
+
+                <!-- 2. Fordismo -->
+                <div class="bg-white dark:bg-slate-800/80 border-t-4 border-ford rounded-2xl p-6 shadow-md card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded bg-red-100 text-red-800 dark:bg-red-900/60 dark:text-red-300">Décadas 1910 - 1970</span>
+                            <div class="w-10 h-10 rounded-full bg-red-50 dark:bg-red-950 flex items-center justify-center text-ford">
+                                <i class="fa-solid fa-gears text-xl"></i>
+                            </div>
+                        </div>
+
+                        <!-- Ilustração SVG - Fordismo -->
+                        <div class="w-full h-40 bg-red-50/60 dark:bg-slate-900/60 rounded-xl mb-5 flex items-center justify-center p-3 border border-red-100 dark:border-red-900/30 overflow-hidden">
+                            <svg viewBox="0 0 200 120" class="w-full h-full max-h-36">
+                                <!-- Silhueta de Fábrica ao Fundo com Chaminés -->
+                                <polygon points="15,75 15,45 30,55 30,45 45,55 45,35 70,35 70,75" fill="#fca5a5" fill-opacity="0.4"/>
+                                <rect x="22" y="20" width="5" height="25" fill="#ef4444" opacity="0.3"/>
+                                <rect x="37" y="25" width="5" height="20" fill="#ef4444" opacity="0.3"/>
+
+                                <!-- Esteira Rolante -->
+                                <rect x="10" y="80" width="180" height="12" rx="6" fill="#475569"/>
+                                <line x1="10" y1="86" x2="190" y2="86" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8 4"/>
+                                <circle cx="25" cy="86" r="4" fill="#1e293b"/>
+                                <circle cx="100" cy="86" r="4" fill="#1e293b"/>
+                                <circle cx="175" cy="86" r="4" fill="#1e293b"/>
+
+                                <!-- Automóveis Pretos Padronizados (Ford Model T) -->
+                                <g transform="translate(20, 52)">
+                                    <path d="M 5 20 L 10 10 L 25 10 L 32 20 L 45 20 L 45 28 L 0 28 L 0 20 Z" fill="#1e293b"/>
+                                    <circle cx="10" cy="28" r="5" fill="#000000" stroke="#94a3b8" stroke-width="1"/>
+                                    <circle cx="35" cy="28" r="5" fill="#000000" stroke="#94a3b8" stroke-width="1"/>
+                                </g>
+
+                                <g transform="translate(80, 52)">
+                                    <path d="M 5 20 L 10 10 L 25 10 L 32 20 L 45 20 L 45 28 L 0 28 L 0 20 Z" fill="#1e293b"/>
+                                    <circle cx="10" cy="28" r="5" fill="#000000" stroke="#94a3b8" stroke-width="1"/>
+                                    <circle cx="35" cy="28" r="5" fill="#000000" stroke="#94a3b8" stroke-width="1"/>
+                                </g>
+
+                                <g transform="translate(140, 52)">
+                                    <path d="M 5 20 L 10 10 L 25 10 L 32 20 L 45 20 L 45 28 L 0 28 L 0 20 Z" fill="#1e293b"/>
+                                    <circle cx="10" cy="28" r="5" fill="#000000" stroke="#94a3b8" stroke-width="1"/>
+                                    <circle cx="35" cy="28" r="5" fill="#000000" stroke="#94a3b8" stroke-width="1"/>
+                                </g>
+
+                                <!-- Setas de Fluxo Contínuo -->
+                                <path d="M 160 30 L 175 30 L 170 25 M 175 30 L 170 35" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">2. Fordismo</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold tracking-wider mb-4">Produção em Massa</p>
+                        
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-6">
+                            Criado por Henry Ford. Incorporou o Taylorismo e introduziu a esteira rolante automatizada para acelerar o fabrico de bens padronizados.
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-ford mt-1 mr-2 text-xs"></i>
+                                <span><strong>Esteira Rolante:</strong> O trabalho desloca-se até ao operário, ditando o ritmo de produção.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-ford mt-1 mr-2 text-xs"></i>
+                                <span><strong>Padronização total:</strong> Produtos homogéneos (ex: Ford Model T em cor preta).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-ford mt-1 mr-2 text-xs"></i>
+                                <span><strong>Economias de escala:</strong> Produção massiva e acumulativa para baixar custos unitários.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-ford mt-1 mr-2 text-xs"></i>
+                                <span><strong>Salários de consumo:</strong> O operário ganha o suficiente para ser consumidor dos bens.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-700">
+                        <span class="text-xs font-medium text-slate-400">Palavra-chave: <strong class="text-slate-700 dark:text-slate-200">Padronização</strong></span>
+                    </div>
+                </div>
+
+                <!-- 3. Toyotismo -->
+                <div class="bg-white dark:bg-slate-800/80 border-t-4 border-toyota rounded-2xl p-6 shadow-md card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Pós-Guerra / 1970+</span>
+                            <div class="w-10 h-10 rounded-full bg-emerald-50 dark:bg-emerald-950 flex items-center justify-center text-toyota">
+                                <i class="fa-solid fa-leaf text-xl"></i>
+                            </div>
+                        </div>
+
+                        <!-- Ilustração SVG - Toyotismo -->
+                        <div class="w-full h-40 bg-emerald-50/60 dark:bg-slate-900/60 rounded-xl mb-5 flex items-center justify-center p-3 border border-emerald-100 dark:border-emerald-900/30 overflow-hidden">
+                            <svg viewBox="0 0 200 120" class="w-full h-full max-h-36">
+                                <!-- Cartões Kanban -->
+                                <rect x="20" y="25" width="42" height="55" rx="4" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+                                <rect x="25" y="32" width="20" height="5" rx="1" fill="#059669"/>
+                                <line x1="25" y1="45" x2="52" y2="45" stroke="#a7f3d0" stroke-width="2"/>
+                                <line x1="25" y1="53" x2="48" y2="53" stroke="#a7f3d0" stroke-width="2"/>
+                                <circle cx="30" cy="67" r="3" fill="#10b981"/>
+
+                                <rect x="70" y="25" width="42" height="55" rx="4" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+                                <rect x="75" y="32" width="20" height="5" rx="1" fill="#f59e0b"/>
+                                <line x1="75" y1="45" x2="102" y2="45" stroke="#a7f3d0" stroke-width="2"/>
+                                <line x1="75" y1="53" x2="98" y2="53" stroke="#a7f3d0" stroke-width="2"/>
+                                <circle cx="80" cy="67" r="3" fill="#10b981"/>
+
+                                <!-- Símbolo Kaizen / Melhoria Contínua (Círculo de Retorno) -->
+                                <g transform="translate(145, 50)">
+                                    <circle cx="0" cy="0" r="28" fill="none" stroke="#059669" stroke-width="3" stroke-dasharray="130" stroke-dashoffset="20"/>
+                                    <polygon points="22,-10 32,-3 20,5" fill="#059669"/>
+                                    <!-- Ícone de Equipa/Flexibilidade no centro -->
+                                    <circle cx="-6" cy="-4" r="4" fill="#047857"/>
+                                    <circle cx="6" cy="-4" r="4" fill="#047857"/>
+                                    <path d="M -12 10 C -12 4, -2 4, -2 10" fill="none" stroke="#047857" stroke-width="2"/>
+                                    <path d="M 2 10 C 2 4, 12 4, 12 10" fill="none" stroke="#047857" stroke-width="2"/>
+                                </g>
+
+                                <!-- Rótulo Just-In-Time -->
+                                <rect x="40" y="90" width="120" height="20" rx="10" fill="#059669"/>
+                                <text x="100" y="104" font-family="Inter, sans-serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">JUST-IN-TIME (JIT)</text>
+                            </svg>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">3. Toyotismo</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold tracking-wider mb-4">Produção Flexível</p>
+                        
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-6">
+                            Desenvolvido no Japão por Taiichi Ohno (Toyota). Projetado para atender a um mercado diversificado, com eliminação ativa de desperdícios.
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-toyota mt-1 mr-2 text-xs"></i>
+                                <span><strong>Just-In-Time (JIT):</strong> Produção sob encomenda, mantendo os stocks no mínimo absoluto.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-toyota mt-1 mr-2 text-xs"></i>
+                                <span><strong>Filosofia Kaizen:</strong> Melhoria contínua da qualidade e eliminação do desperdício.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-toyota mt-1 mr-2 text-xs"></i>
+                                <span><strong>Trabalhador Polivalente:</strong> Operário multifuncional organizado em equipas autónomas.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-toyota mt-1 mr-2 text-xs"></i>
+                                <span><strong>Sinalização Kanban:</strong> Gestão visual e rápida do fluxo produtivo.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-700">
+                        <span class="text-xs font-medium text-slate-400">Palavra-chave: <strong class="text-slate-700 dark:text-slate-200">Flexibilidade</strong></span>
+                    </div>
+                </div>
+
+                <!-- 4. Uberização / Uberlarismo -->
+                <div class="bg-white dark:bg-slate-800/80 border-t-4 border-uber rounded-2xl p-6 shadow-md card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">Século XXI (Atual)</span>
+                            <div class="w-10 h-10 rounded-full bg-amber-50 dark:bg-amber-950 flex items-center justify-center text-uber">
+                                <i class="fa-solid fa-mobile-screen-button text-xl"></i>
+                            </div>
+                        </div>
+
+                        <!-- Ilustração SVG - Uberização -->
+                        <div class="w-full h-40 bg-amber-50/60 dark:bg-slate-900/60 rounded-xl mb-5 flex items-center justify-center p-3 border border-amber-100 dark:border-amber-900/30 overflow-hidden">
+                            <svg viewBox="0 0 200 120" class="w-full h-full max-h-36">
+                                <!-- Rede Algorítmica de Conexão -->
+                                <line x1="40" y1="30" x2="100" y2="55" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 3"/>
+                                <line x1="160" y1="35" x2="100" y2="55" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 3"/>
+                                <line x1="100" y1="55" x2="100" y2="95" stroke="#d97706" stroke-width="2"/>
+
+                                <!-- Smartphone Central -->
+                                <rect x="80" y="20" width="40" height="75" rx="6" fill="#1e293b" stroke="#d97706" stroke-width="2"/>
+                                <rect x="84" y="26" width="32" height="55" rx="2" fill="#0f172a"/>
+                                <circle cx="100" cy="88" r="2" fill="#94a3b8"/>
+                                <!-- Ícone de Algoritmo/Sinal no ecrã -->
+                                <path d="M 94 45 L 100 38 L 106 45 L 100 52 Z" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                                <circle cx="100" cy="45" r="2" fill="#f59e0b"/>
+                                <!-- Pin de Localização GPS -->
+                                <path d="M 100 58 C 96 58, 94 62, 100 68 C 106 62, 104 58, 100 58 Z" fill="#ef4444"/>
+
+                                <!-- Cliente (Utilizador) -->
+                                <circle cx="35" cy="30" r="10" fill="#3b82f6"/>
+                                <i class="fa-solid fa-user"></i>
+                                <path d="M 23 48 C 23 40, 47 40, 47 48" fill="#3b82f6"/>
+
+                                <!-- Estafeta (Motociclo / Bicicleta / Trabalhador) -->
+                                <g transform="translate(145, 65)">
+                                    <circle cx="10" cy="18" r="6" fill="#1e293b"/>
+                                    <circle cx="30" cy="18" r="6" fill="#1e293b"/>
+                                    <path d="M 5 18 L 15 8 L 22 14 L 32 18" stroke="#d97706" stroke-width="2" fill="none"/>
+                                    <!-- Mochila de Entrega Quadrada -->
+                                    <rect x="-2" y="-2" width="10" height="12" rx="2" fill="#dc2626"/>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">4. Uberização</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold tracking-wider mb-4">Algorítmico / Gig Economy</p>
+                        
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mb-6">
+                            Modelo emergente da era digital. Intermediação de serviços através de aplicações com gestão automatizada e descentralizada da força de trabalho.
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-uber mt-1 mr-2 text-xs"></i>
+                                <span><strong>Gestão Algorítmica:</strong> O chefia tradicional é substituída por código de programação e geolocalização.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-uber mt-1 mr-2 text-xs"></i>
+                                <span><strong>Trabalho à procura:</strong> Remuneração exclusiva por tarefa realizada (Gig Economy).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-uber mt-1 mr-2 text-xs"></i>
+                                <span><strong>Triângulo de Serviço:</strong> Plataforma Digital &harr; Estafeta/Trabalhador &harr; Cliente.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-uber mt-1 mr-2 text-xs"></i>
+                                <span><strong>Flexibilidade e Precarização:</strong> Autonomia de horários sem vínculo laboral formal nem garantias tradicionais.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 dark:border-slate-700">
+                        <span class="text-xs font-medium text-slate-400">Palavra-chave: <strong class="text-slate-700 dark:text-slate-200">Algoritmo & Procura</strong></span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Matriz Comparativa Interativa -->
+        <section id="comparativo" class="py-16 bg-slate-100 dark:bg-slate-800/40 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Matriz Comparativa Direta</h2>
+                    <p class="text-slate-500 dark:text-slate-400 mt-2">Examine as diferenças estruturais entre cada sistema de produção</p>
+                </div>
+
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700">
+                            <tr>
+                                <th class="p-4 font-bold">Critério</th>
+                                <th class="p-4 font-bold text-blue-600 dark:text-blue-400 border-l border-slate-200 dark:border-slate-800">Taylorismo</th>
+                                <th class="p-4 font-bold text-red-600 dark:text-red-400 border-l border-slate-200 dark:border-slate-800">Fordismo</th>
+                                <th class="p-4 font-bold text-emerald-600 dark:text-emerald-400 border-l border-slate-200 dark:border-slate-800">Toyotismo</th>
+                                <th class="p-4 font-bold text-amber-600 dark:text-amber-400 border-l border-slate-200 dark:border-slate-800">Uberização</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+                            <tr>
+                                <td class="p-4 font-semibold bg-slate-50/50 dark:bg-slate-800/30">Época Dominante</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Início do Séc. XX</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Décadas de 1910 a 1970</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Década de 1970 ao final do Séc. XX</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Século XXI (Plataformas)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold bg-slate-50/50 dark:bg-slate-800/30">Mecanismo Central</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Cronómetro & Ficha de instrução</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Esteira rolante mecânica</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Cartões Kanban & Just-In-Time</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Algoritmo em Smartphone/App</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold bg-slate-50/50 dark:bg-slate-800/30">Perfil de Produtos</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Padronizados / Foco na tarefa</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Em massa (Modelo único e fixo)</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Customizado & Variado</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Serviço imediato sob procura</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold bg-slate-50/50 dark:bg-slate-800/30">Gestão de Stocks</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Médio a grande stock</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Stocks massivos de segurança</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Stock zero (Produção à medida)</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Sem stock (Trabalho em tempo real)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold bg-slate-50/50 dark:bg-slate-800/30">Perfil do Trabalhador</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Especializado em 1 único movimento</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Repetitivo / Não qualificado</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Polivalente / Trabalho em equipa</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Prestador "independente" / Estafeta</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-semibold bg-slate-50/50 dark:bg-slate-800/30">Supervisão/Controlo</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Gestor / Controlo Científico</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Velocidade mecânica da esteira</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Metas de qualidade coletivas</td>
+                                <td class="p-4 border-l border-slate-200 dark:border-slate-800">Avaliações (estrelas) & GPS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Linha do Tempo Evolutiva -->
+        <section id="linha-tempo" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Linha do Tempo Evolutiva</h2>
+                <p class="text-slate-500 dark:text-slate-400 mt-2">A trajetória do trabalho: da industrialização mecânica à era da economia de plataformas</p>
+            </div>
+
+            <div class="relative border-l-2 border-indigo-200 dark:border-indigo-900/60 ml-4 sm:ml-32 space-y-12">
+                <!-- Marco 1 -->
+                <div class="relative flex flex-col sm:flex-row items-start group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs ring-4 ring-white dark:ring-slate-900">
+                        1
+                    </div>
+                    <div class="sm:w-28 sm:-ml-32 sm:text-right pr-6 mb-2 sm:mb-0">
+                        <span class="text-sm font-bold text-blue-600 dark:text-blue-400">1900 - 1910</span>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex-1">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white">Taylorismo: A Organização Científica</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-2">
+                            A publicação das teorias de Frederick Winslow Taylor revoluciona as fábricas. O tempo despendido em cada tarefa é cronometrado para atingir o máximo rendimento operário.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Marco 2 -->
+                <div class="relative flex flex-col sm:flex-row items-start group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-xs ring-4 ring-white dark:ring-slate-900">
+                        2
+                    </div>
+                    <div class="sm:w-28 sm:-ml-32 sm:text-right pr-6 mb-2 sm:mb-0">
+                        <span class="text-sm font-bold text-red-600 dark:text-red-400">1913 - 1970</span>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex-1">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white">Fordismo: A Esteira de Montagem e Consumo em Massa</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-2">
+                            Henry Ford introduz a linha de montagem móvel na fábrica da Ford. Este avanço barateia o fabrico de automóveis e estabelece a era da produção em massa sincronizada com o consumo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Marco 3 -->
+                <div class="relative flex flex-col sm:flex-row items-start group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs ring-4 ring-white dark:ring-slate-900">
+                        3
+                    </div>
+                    <div class="sm:w-28 sm:-ml-32 sm:text-right pr-6 mb-2 sm:mb-0">
+                        <span class="text-sm font-bold text-emerald-600 dark:text-emerald-400">1970 - 2000</span>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex-1">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white">Toyotismo: Produção Enxuta (Lean Production)</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-2">
+                            A crise do petróleo de 1973 revela as vulnerabilidades dos grandes stocks fordistas. O modelo japonês Just-In-Time expande-se globalmente, priorizando a personalização e o desperdício zero.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Marco 4 -->
+                <div class="relative flex flex-col sm:flex-row items-start group">
+                    <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-xs ring-4 ring-white dark:ring-slate-900">
+                        4
+                    </div>
+                    <div class="sm:w-28 sm:-ml-32 sm:text-right pr-6 mb-2 sm:mb-0">
+                        <span class="text-sm font-bold text-amber-600 dark:text-amber-400">2010+</span>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex-1">
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white">Uberização: O Trabalho Gerido por Algoritmos</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-2">
+                            A difusão dos smartphones, redes móveis e sistemas de geolocalização dá origem ao trabalho por aplicação. O controlo produtivo migra da fábrica para sistemas algorítmicos distribuídos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Questionário Interativo -->
+        <section id="quiz" class="py-16 bg-slate-100 dark:bg-slate-800/40 border-t border-slate-200 dark:border-slate-800">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-8">
+                    <span class="text-xs font-bold px-3 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 rounded-full">
+                        Avaliação Didática
+                    </span>
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mt-2">Questionário Interativo</h2>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Consolide os seus conhecimentos sobre os 4 modelos de produção</p>
+                </div>
+
+                <div id="quiz-container" class="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-lg">
+                    <div class="flex justify-between items-center mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
+                        <span id="question-counter" class="text-sm font-semibold text-indigo-600 dark:text-indigo-400">Pergunta 1 de 4</span>
+                        <span id="score-display" class="text-sm font-bold text-slate-500">Pontuação: 0</span>
+                    </div>
+
+                    <h3 id="question-text" class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-6">
+                        A carregar pergunta...
+                    </h3>
+
+                    <div id="options-container" class="space-y-3">
+                        <!-- Opções injetadas dinamicamente -->
+                    </div>
+
+                    <div id="feedback-box" class="hidden mt-6 p-4 rounded-xl text-sm font-medium"></div>
+
+                    <div class="mt-8 flex justify-end">
+                        <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all">
+                            Próxima Pergunta <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resultados do Questionário -->
+                <div id="quiz-results" class="hidden bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-700 shadow-xl text-center">
+                    <div class="w-16 h-16 bg-indigo-100 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Questionário Concluído!</h3>
+                    <p id="final-score-text" class="text-lg text-slate-600 dark:text-slate-300 mb-6"></p>
+                    <button onclick="restartQuiz()" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all">
+                        Repetir Questionário <i class="fa-solid fa-rotate-right ml-2 text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
+            <p>© Guia Educativo de Modelos de Produção e Trabalho.</p>
+            <p class="text-xs text-slate-500">Desenvolvido com ilustrações SVG, Tailwind CSS e JavaScript.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts de Interatividade -->
+    <script>
+        // Lógica de Alternância de Tema (Modo Claro / Escuro)
+        const themeToggleBtn = document.getElementById('themeToggle');
+        
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        // Dados do Questionário
+        const quizData = [
+            {
+                question: "Qual modelo introduziu a linha de montagem móvel com esteira para viabilizar o fabrico em massa de automóveis padronizados?",
+                options: [
+                    "Taylorismo",
+                    "Fordismo",
+                    "Toyotismo",
+                    "Uberização"
+                ],
+                correct: 1,
+                explanation: "O Fordismo, concebido por Henry Ford, introduziu as esteiras rolantes para acelerar a produção em massa do Ford Model T."
+            },
+            {
+                question: "O conceito de 'Just-In-Time' e a eliminação de stocks desnecessários são marcas centrais de qual sistema?",
+                options: [
+                    "Toyotismo",
+                    "Taylorismo",
+                    "Fordismo",
+                    "Uberização"
+                ],
+                correct: 0,
+                explanation: "O Toyotismo foca na produção flexível sob encomenda (Just-In-Time), eliminando desperdícios de espaço e material."
+            },
+            {
+                question: "O estudo rigoroso do 'tempo e dos movimentos' com um cronómetro para eliminar gestos ineficientes caracteriza o:",
+                options: [
+                    "Fordismo",
+                    "Toyotismo",
+                    "Taylorismo",
+                    "Uberlarismo"
+                ],
+                correct: 2,
+                explanation: "Frederick Taylor desenvolveu a Organização Científica do Trabalho com foco no estudo metódico de tempos e movimentos."
+            },
+            {
+                question: "A submissão do trabalho ao controlo algorítmico via aplicação e ausência de vínculo laboral formal é a base da:",
+                options: [
+                    "Revolução Toyotista",
+                    "Padronização Fordista",
+                    "Uberização / Uberlarismo",
+                    "Gestão Científica Taylorista"
+                ],
+                correct: 2,
+                explanation: "A Uberização assenta em plataformas digitais, prestação de serviços à procura e gestão automatizada por algoritmos."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function loadQuestion() {
+            answered = false;
+            const q = quizData[currentQuestion];
+            document.getElementById('question-counter').innerText = `Pergunta ${currentQuestion + 1} de ${quizData.length}`;
+            document.getElementById('score-display').innerText = `Pontuação: ${score}`;
+            document.getElementById('question-text').innerText = q.question;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            const feedbackBox = document.getElementById('feedback-box');
+            feedbackBox.classList.add('hidden');
+
+            document.getElementById('next-btn').classList.add('hidden');
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 hover:bg-indigo-50/50 dark:hover:bg-slate-800 transition-all text-sm font-medium flex items-center justify-between";
+                btn.innerHTML = `<span>${opt}</span> <i class="fa-regular fa-circle text-slate-300"></i>`;
+                btn.onclick = () => selectOption(idx, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(index, btnElement) {
+            if (answered) return;
+            answered = true;
+
+            const q = quizData[currentQuestion];
+            const optionsBtns = document.getElementById('options-container').children;
+            const feedbackBox = document.getElementById('feedback-box');
+
+            if (index === q.correct) {
+                score += 10;
+                btnElement.className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200 text-sm font-semibold flex items-center justify-between";
+                btnElement.querySelector('i').className = "fa-solid fa-circle-check text-emerald-500 text-lg";
+                
+                feedbackBox.className = "mt-6 p-4 rounded-xl text-sm font-medium bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i> <strong>Certo!</strong> ${q.explanation}`;
+            } else {
+                btnElement.className = "w-full text-left p-4 rounded-xl border-2 border-red-500 bg-red-50 dark:bg-red-950/40 text-red-900 dark:text-red-200 text-sm font-semibold flex items-center justify-between";
+                btnElement.querySelector('i').className = "fa-solid fa-circle-xmark text-red-500 text-lg";
+
+                // Destacar opção correta
+                const correctBtn = optionsBtns[q.correct];
+                correctBtn.className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200 text-sm font-semibold flex items-center justify-between";
+
+                feedbackBox.className = "mt-6 p-4 rounded-xl text-sm font-medium bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-800";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark mr-2"></i> <strong>Incorreto.</strong> ${q.explanation}`;
+            }
+
+            feedbackBox.classList.remove('hidden');
+            document.getElementById('score-display').innerText = `Pontuação: ${score}`;
+            document.getElementById('next-btn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            const resultsBox = document.getElementById('quiz-results');
+            resultsBox.classList.remove('hidden');
+
+            const totalPossible = quizData.length * 10;
+            document.getElementById('final-score-text').innerHTML = `Obteve <strong>${score}</strong> de <strong>${totalPossible}</strong> pontos possíveis.`;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quiz-results').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        // Inicializar Questionário
+        window.onload = function() {
+            loadQuestion();
+        };
+    </script>
+</body>
+</html>
